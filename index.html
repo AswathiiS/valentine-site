@@ -97,7 +97,7 @@ button{
 <!-- FRONT -->
 <div id="front" style="margin-top:120px;">
   <h2 class="valentine">💖 Happy Valentine’s Day 💖</h2>
-  <h1>❤️ Hi Manojetta ❤️</h1>
+  <h1>❤️ Hi Manoj ❤️</h1>
   <p>One small test just for you 😌</p>
   <button class="start" onclick="start()">Start Test ❤️</button>
 </div>
@@ -138,6 +138,9 @@ const quiz=[
  }
 ];
 
+const front=document.getElementById("front");
+const quizDiv=document.getElementById("quiz");
+
 function start(){
  document.getElementById("bgm").play();
  front.style.display="none";
@@ -145,12 +148,9 @@ function start(){
  load();
 }
 
-const front=document.getElementById("front");
-const quizDiv=document.getElementById("quiz");
-
 function load(){
  if(i>=quiz.length){
-  box.innerHTML=`
+  document.getElementById("box").innerHTML=`
    <h2>Final Score: ${s}/${quiz.length}</h2>
    <h3>Will you be my Valentine? 💍</h3>
    <button class="yes" onclick="yes()">YES ❤️</button>
@@ -185,7 +185,7 @@ function move(btn){
 }
 
 function yes(){
- document.body.innerHTML += `
+ quizDiv.innerHTML=`
   <div style="
     height:100vh;
     display:flex;
