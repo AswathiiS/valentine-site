@@ -89,15 +89,15 @@ button{
 
 <body>
 
-<!-- 🎵 MUSIC (front → last page) -->
-<audio id="bgm" autoplay loop>
+<!-- 🎵 MUSIC -->
+<audio id="bgm" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <!-- FRONT -->
 <div id="front" style="margin-top:120px;">
   <h2 class="valentine">💖 Happy Valentine’s Day 💖</h2>
-  <h1>❤️ Hi Manoj ❤️</h1>
+  <h1>❤️ Hi Manojetta ❤️</h1>
   <p>One small test just for you 😌</p>
   <button class="start" onclick="start()">Start Test ❤️</button>
 </div>
@@ -119,19 +119,19 @@ let i=0,s=0;
 
 const quiz=[
  {
-  img:"your_memories/pic1.jpg",
+  img:"pic1.jpg",
   q:"Where did we click this photo?",
   o:["Kava","Kodaikanal","Munnar"],
   a:"Kodaikanal"
  },
  {
-  img:"your_memories/pic2.jpg",
+  img:"pic2.jpg",
   q:"When did we first send message?",
   o:["Dec 5","Nov 15","Oct 3"],
   a:"Nov 15"
  },
  {
-  img:"your_memories/pic3.jpg",
+  img:"pic3.jpg",
   q:"When did we first go out and date?",
   o:["Jan 15 ❤️","Feb 14","Don’t remember"],
   a:"Jan 15 ❤️"
@@ -139,7 +139,7 @@ const quiz=[
 ];
 
 function start(){
- document.getElementById("bgm").play(); // mobile support
+ document.getElementById("bgm").play();
  front.style.display="none";
  quizDiv.style.display="block";
  load();
@@ -171,7 +171,7 @@ function check(x){
   s++;
   alert("Correct 😘 Ettan ellam ariyaloo!");
  }else{
-  alert("Wrong 😜 Pakshe nee ente thanne ❤️");
+  alert("Wrong 😜 Pakshe ettan ende muthale ❤️");
  }
  i++;
  score.innerText="Score: "+s;
@@ -185,7 +185,7 @@ function move(btn){
 }
 
 function yes(){
- document.body.innerHTML=`
+ document.body.innerHTML += `
   <div style="
     height:100vh;
     display:flex;
@@ -203,6 +203,7 @@ function yes(){
     <h3>– Yours always, Aswathi 💖</h3>
   </div>
  `;
+ document.getElementById("bgm").play();
 }
 
 // floating hearts
