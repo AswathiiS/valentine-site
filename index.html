@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Important Life Test ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background: radial-gradient(circle, #ff5f6d, #ffc371);
+  text-align:center;
+  color:white;
+  overflow-y:auto;   /* ✅ scroll allow */
+
+  .card{
+  margin:30px auto;
+
+  .valentine{
+  font-size:28px;
+  font-weight:700;
+  margin-bottom:10px;
+  animation:glow 2s ease-in-out infinite;
+  text-shadow:0 0 10px rgba(255,255,255,.6);
+}
+
+@keyframes glow{
+  0%{
+    transform:scale(1);
+    opacity:0.7;
+  }
+  50%{
+    transform:scale(1.1);
+    opacity:1;
+  }
+  100%{
+    transform:scale(1);
+    opacity:0.7;
+  }
+}
+
+}
+
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  animation:float 6s linear infinite;
+  opacity:.5;
+}
+@keyframes float{
+  from{bottom:-10%;}
+  to{bottom:110%;}
+}
+
+/* Front page */
+#front{margin-top:120px;}
+.start{
+  background:white;
+  color:#ff416c;
+  font-size:19px;
+  padding:16px 0;
+  width:260px;              /* 👈 neelam koodi */
+  border-radius:35px;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  font-weight:600;
+}
+/* Quiz */
+#bar{height:8px;background:rgba(255,255,255,.4);}
+#fill{height:100%;width:0;background:lime;}
+
+.card{
+  background:white;
+  color:black;
+  width:90%;
+  max-width:350px;
+  margin:60px auto;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.3);
+  
+  .valentine{
+  letter-spacing:1px;
+}
+
+}
+
+img{
+  width:100%;
+  border-radius:15px;
+  margin-bottom:10px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border:none;
+  border-radius:8px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.opt{background:#eee;}
+.yes{background:green;color:white;font-size:18px;}
+.no{background:red;color:white;position:relative;}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- FRONT -->
+<div id="front">
+  <h2 class="valentine">💖 Happy Valentine’s Day My Love💖</h2>
+  <h1>❤️ Hi Manojetta❤️</h1>
+  <p>One small test just for you..But all my love is here 😌</p>
+  <button class="start" onclick="start()">Start Test ❤️</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" style="display:none;">
+  <div id="bar"><div id="fill"></div></div>
+  <h3 id="score">Score: 0</h3>
+
+  <div class="card" id="box">
+    <img id="img" alt="memory">
+    <h3 id="q"></h3>
+    <div id="opts"></div>
+  </div>
+</div>
+
+<script>
+let i=0,s=0;
+
+const quiz=[
+ {
+  img:"./your_memories/pic1.jpg",
+  q:"Where did we click this photo?",
+  o:["Kava","Kodaikanal","Munnar"],
+  a:"Kodaikanal"
+ },
+ {
+  img:"./your_memories/pic2.jpg",
+  q:"When did we first send message?",
+  o:["Dec 5","Nov 15","Oct 3"],
+  a:"Nov 15"
+ },
+ {
+  img:"./your_memories/pic3.jpg",
+  q:"When did we first go out and date?",
+  o:["Jan 15 ❤️","Feb 14","Don’t remember"],
+  a:"Jan 15 ❤️"
+ }
+];
+
+function start(){
+ document.getElementById("bgm").play();
+ front.style.display="none";
+ quizDiv.style.display="block";
+ load();
+}
+
+const front=document.getElementById("front");
+const quizDiv=document.getElementById("quiz");
+
+function load(){
+ if(i>=quiz.length){
+  box.innerHTML=`
+   <h2>Final Score: ${s}/${quiz.length}</h2>
+   <h3>Will you be my Valentine? 💍</h3>
+   <button class="yes" onclick="yes()">YES ❤️</button>
+   <button class="no" onmouseover="move(this)">NO</button>
+  `;
+  return;
+ }
+ img.src=quiz[i].img;
+ q.innerText=quiz[i].q;
+ opts.innerHTML="";
+ quiz[i].o.forEach(x=>{
+  opts.innerHTML+=`<button class="opt" onclick="check('${x}')">${x}</button>`;
+ });
+}
+
+function check(x){
+ if(x===quiz[i].a){
+  s++;
+  alert("Correct 😘 Ettan ellam ariyaloo!");
+ }else{
+  alert("Wrong 😜 pakshe ettan ennum ende muthalee ❤️");
+ }
+ i++;
+ score.innerText="Score: "+s;
+ fill.style.width=(i/quiz.length*100)+"%";
+ load();
+}
+
+function move(btn){
+ btn.style.left=Math.random()*100+"px";
+ btn.style.top=Math.random()*50+"px";
+}
+
+function yes(){
+  const music = document.getElementById("bgm");
+  music.play(); // safety
+
+  front.style.display = "none";
+  quizDiv.style.display = "none";
+
+  const final = document.createElement("div");
+  final.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+    ">
+      <h1>❤️ THANK YOU FOR CHOOSING ME ❤️</h1>
+      <h2>You are my today, tomorrow & forever 💍</h2>
+
+      <h1 style="
+        margin-top:40px;
+        font-size:36px;
+        font-weight:800;
+      ">
+        I LOVE YOU ETTA 💋
+      </h1>
+
+      <h3 style="margin-top:20px;">
+        – Yours always, Aswathi 💖
+      </h3>
+    </div>
+  `;
+  document.body.appendChild(final);
+}
+
+/* Hearts */
+setInterval(()=>{
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerText="❤️";
+ h.style.left=Math.random()*100+"%";
+ h.style.fontSize=Math.random()*25+10+"px";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
